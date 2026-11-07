@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard Royale Example</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3f3ee; --card: #fdfdf9; --ink: #1f3a2e; --muted: #6b7a72; --line: #e3e3da;
+    --green: #234f3b; --gold: #b8975a; --gold-soft: #f4ecd9; --track: #ecece4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101814; --card: #17221c; --ink: #e9efe9; --muted: #9aa8a0; --line: #26332c;
+      --green: #3f8a66; --gold: #d2b072; --gold-soft: #3a3222; --track: #24302a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101814; --card: #17221c; --ink: #e9efe9; --muted: #9aa8a0; --line: #26332c;
+    --green: #3f8a66; --gold: #d2b072; --gold-soft: #3a3222; --track: #24302a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 Inter, system-ui, sans-serif; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+  header { background: var(--card); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 12px; }
+  .brand { display: flex; align-items: center; gap: 12px; font: 24px "DM Serif Display", serif; }
+  .logo { width: 38px; height: 38px; border-radius: 8px; background: var(--green); color: var(--gold); display: grid; place-items: center; font-size: 20px; }
+  .tag { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  .eyebrow { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  h1 { font: 44px/1.1 "DM Serif Display", serif; margin: 8px 0; }
+  h1 em { color: var(--green); }
+  h2 { font-size: 17px; font-weight: 500; margin: 0; }
+  .sub { color: var(--muted); font-size: 13px; margin: 2px 0 0; }
+  .hero { padding: 36px 0 20px; }
+  .note { background: var(--gold-soft); border-radius: 8px; padding: 8px 12px; font-size: 12px; margin-top: 12px; display: inline-block; }
+  .filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+  .filters label { display: flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 0 12px; height: 40px; color: var(--muted); font-size: 13px; }
+  select { border: 0; background: transparent; color: var(--ink); font: inherit; padding: 4px 0; cursor: pointer; }
+  select option { background: var(--card); color: var(--ink); }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; }
+  .kpi .label { color: var(--muted); font-size: 13px; }
+  .kpi .value { font-size: 32px; margin: 10px 0 4px; font-variant-numeric: tabular-nums; }
+  .kpi .foot { color: var(--muted); font-size: 11px; }
+  .kpi.feature { background: var(--green); border-color: var(--green); color: #fff; }
+  .kpi.feature .label, .kpi.feature .foot { color: rgba(255,255,255,.75); }
+  .row { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+  .toggle { display: flex; background: var(--track); border-radius: 8px; padding: 3px; }
+  .toggle button { border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 12px; padding: 5px 12px; border-radius: 6px; cursor: pointer; }
+  .toggle button.on { background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.1); }
+  .legend { display: flex; gap: 16px; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .legend i { display: inline-block; width: 14px; height: 3px; margin-right: 6px; vertical-align: middle; border-radius: 2px; }
+  #chart { width: 100%; height: 240px; display: block; }
+  #chart text { fill: var(--muted); font-size: 11px; }
+  .tip { position: fixed; pointer-events: none; background: var(--ink); color: var(--card); padding: 6px 10px; border-radius: 6px; font-size: 12px; opacity: 0; transition: opacity .1s; }
+  .zone { display: block; width: 100%; border: 0; background: none; color: inherit; font: inherit; text-align: left; padding: 8px 0; cursor: pointer; }
+  .zone .top { display: flex; justify-content: space-between; font-size: 13px; }
+  .zone .bar { height: 5px; background: var(--track); border-radius: 3px; margin-top: 6px; }
+  .zone .bar span { display: block; height: 100%; background: var(--green); border-radius: 3px; transition: width .3s; }
+  .zone.on .bar span { background: var(--gold); }
+  .zone.on .top { font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; font-weight: 500; color: var(--muted); padding: 10px 12px; border-bottom: 1px solid var(--line); cursor: pointer; white-space: nowrap; }
+  td { padding: 12px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  tbody tr { cursor: pointer; }
+  tbody tr:hover, tbody tr.on { background: var(--track); }
+  .pill { background: var(--gold-soft); color: var(--ink); padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+  input[type=search] { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 8px; height: 38px; padding: 0 12px; font: inherit; width: 220px; }
+  .detail { margin-top: 14px; padding: 14px 16px; border-radius: 8px; background: var(--gold-soft); font-size: 13px; display: none; }
+  .detail.show { display: block; }
+  .table-scroll { overflow-x: auto; }
+  footer { color: var(--muted); font-size: 12px; padding: 24px 0 40px; }
+  @media (max-width: 860px) {
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+    .row { grid-template-columns: 1fr; }
+    h1 { font-size: 34px; }
+    .tag { display: none; }
+    input[type=search] { width: 100%; }
+    .head { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand"><div class="logo">♠</div>Dashboard Royale</div>
+    <div class="tag">Layout example · placeholder values</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Example layout</div>
+    <h1>A clearer view of <em>the floor.</em></h1>
+    <p class="sub">A minimal layout showing common dashboard parts: filters, headline numbers, a trend, a breakdown and a table. What you put in them is up to you.</p>
+    <div class="note">♦ Every number, name and label here is a random placeholder. Nothing on this page comes from the challenge data or suggests how to analyze it.</div>
+  </section>
+
+  <div class="filters">
+    <label>Period
+      <select id="period">
+        <option value="6">Jan – Jun 2025</option>
+        <option value="3">Apr – Jun 2025</option>
+        <option value="1">Jun 2025</option>
+      </select>
+    </label>
+    <label>Zone
+      <select id="zone"><option value="all">All zones</option></select>
+    </label>
+  </div>
+
+  <section class="kpis">
+    <div class="card kpi"><div class="label">Metric A</div><div class="value" id="k-wager">–</div><div class="foot">Placeholder total</div></div>
+    <div class="card kpi feature"><div class="label">Metric B</div><div class="value" id="k-win">–</div><div class="foot" id="k-hold">–</div></div>
+    <div class="card kpi"><div class="label">Metric C</div><div class="value" id="k-exp">–</div><div class="foot">Placeholder count</div></div>
+    <div class="card kpi"><div class="label">Metric D</div><div class="value" id="k-avail">–</div><div class="foot">Placeholder rate</div></div>
+  </section>
+
+  <div class="row">
+    <section class="card">
+      <div class="head">
+        <div><h2>Trend over time</h2><p class="sub">Metric B, placeholder values</p></div>
+        <div class="toggle" role="group" aria-label="Granularity">
+          <button data-g="1">Daily</button><button data-g="7" class="on">Weekly</button>
+        </div>
+      </div>
+      <div class="legend"><span><i style="background:var(--green)"></i>Metric B</span></div>
+      <svg id="chart" role="img" aria-label="Line chart of placeholder values"></svg>
+    </section>
+
+    <section class="card">
+      <div class="head"><div><h2>By zone</h2><p class="sub">Metric B by zone · click to filter</p></div></div>
+      <div id="zones"></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <div class="head">
+      <div><div class="eyebrow">Table</div><h2 style="margin-top:6px">Machines</h2><p class="sub">Click a column to sort, a row for details.</p></div>
+      <input type="search" id="search" placeholder="Find a machine…" aria-label="Find a machine">
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr>
+          <th data-k="id">Machine</th><th data-k="zone">Zone</th><th data-k="win">Metric B ↓</th><th data-k="sessions">Metric C</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="detail" id="detail"></div>
+  </section>
+
+  <footer>Dashboard Royale layout example · random placeholder values only · not a submission and not a hint.</footer>
+</main>
+<div class="tip" id="tip"></div>
+
+<script>
+// ---- Placeholder data (seeded random, NOT from the dataset) ----
+let seed = 7;
+const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const ZONES = ["Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"];
+const GAMES = ["Game A", "Game B", "Game C"];
+const START = new Date(2025, 0, 1), DAYS = 181;
+
+const machines = Array.from({ length: 20 }, (_, i) => ({
+  id: "Machine " + String(i + 1).padStart(2, "0"),
+  game: GAMES[i % GAMES.length],
+  zone: ZONES[i % ZONES.length],
+  scale: 0.5 + rnd(),
+  sessions: 100 + Math.floor(rnd() * 900)
+}));
+// daily rows per zone
+const daily = [];
+for (let d = 0; d < DAYS; d++) for (const z of ZONES) {
+  const base = 8000 + rnd() * 6000;
+  daily.push({ d, zone: z, wager: base * 10, count: Math.floor(50 + rnd() * 100), win: base });
+}
+
+// ---- State ----
+const state = { months: 6, zone: "all", gran: 7, sort: "win", asc: false, q: "", sel: null };
+const $ = id => document.getElementById(id);
+const money = v => v >= 1e6 ? "$" + (v / 1e6).toFixed(2) + "M" : v >= 1e3 ? "$" + (v / 1e3).toFixed(1) + "k" : "$" + v.toFixed(0);
+const startDay = () => { const s = new Date(2025, 6 - state.months, 1); return Math.round((s - START) / 864e5); };
+
+ZONES.forEach(z => $("zone").add(new Option(z, z)));
+
+function render() {
+  const s = startDay();
+  const inPeriod = daily.filter(r => r.d >= s);
+  const rows = inPeriod.filter(r => state.zone === "all" || r.zone === state.zone);
+  const sum = (arr, k) => arr.reduce((a, r) => a + r[k], 0);
+
+  // KPIs
+  const w = sum(rows, "wager"), win = sum(rows, "win");
+  $("k-wager").textContent = money(w);
+  $("k-win").textContent = money(win);
+  $("k-hold").textContent = "Placeholder total";
+  $("k-exp").textContent = sum(rows, "count").toLocaleString();
+  $("k-avail").textContent = (w % 50 + 40).toFixed(1) + "%";
+
+  // Zones
+  const totals = ZONES.map(z => ({ z, v: sum(inPeriod.filter(r => r.zone === z), "win") })).sort((a, b) => b.v - a.v);
+  const max = totals[0].v;
+  $("zones").innerHTML = totals.map(t => `
+    <button class="zone ${state.zone === t.z ? "on" : ""}" data-z="${t.z}" aria-pressed="${state.zone === t.z}">
+      <div class="top"><span>${t.z}</span><span>${money(t.v)}</span></div>
+      <div class="bar"><span style="width:${t.v / max * 100}%"></span></div>
+    </button>`).join("");
+
+  drawChart(rows, s);
+  drawTable(s);
+}
+
+function drawChart(rows, s) {
+  const svg = $("chart"), W = svg.clientWidth || 600, H = 240, P = { l: 52, r: 10, t: 10, b: 24 };
+  const buckets = new Map();
+  rows.forEach(r => {
+    const k = Math.floor((r.d - s) / state.gran);
+    const b = buckets.get(k) || { k, win: 0 };
+    b.win += r.win; buckets.set(k, b);
+  });
+  const pts = [...buckets.values()].sort((a, b) => a.k - b.k);
+  const maxY = Math.max(...pts.map(p => p.win)) * 1.1;
+  const x = i => P.l + i / Math.max(1, pts.length - 1) * (W - P.l - P.r);
+  const y = v => H - P.b - v / maxY * (H - P.t - P.b);
+  const line = k => pts.map((p, i) => (i ? "L" : "M") + x(i).toFixed(1) + "," + y(p[k]).toFixed(1)).join("");
+  const label = i => { const d = new Date(START); d.setDate(d.getDate() + s + pts[i].k * state.gran); return d.toLocaleDateString("en-US", { month: "short", day: "numeric" }); };
+
+  let g = "";
+  for (let i = 0; i <= 4; i++) {
+    const v = maxY / 4 * i;
+    g += `<line x1="${P.l}" x2="${W - P.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-dasharray="3 3"/>
+          <text x="${P.l - 8}" y="${y(v) + 4}" text-anchor="end">${money(v)}</text>`;
+  }
+  const step = Math.ceil(pts.length / 6);
+  pts.forEach((p, i) => { if (i % step === 0) g += `<text x="${x(i)}" y="${H - 6}" text-anchor="middle">${label(i)}</text>`; });
+  g += `<path d="${line("win")}" fill="none" stroke="var(--green)" stroke-width="2.2"/>
+        <line id="cross" y1="${P.t}" y2="${H - P.b}" stroke="var(--muted)" opacity="0"/>
+        <rect x="${P.l}" y="0" width="${W - P.l - P.r}" height="${H}" fill="transparent" id="hit"/>`;
+  svg.innerHTML = g;
+
+  const tip = $("tip"), cross = svg.querySelector("#cross");
+  svg.querySelector("#hit").onmousemove = e => {
+    const r = svg.getBoundingClientRect();
+    const i = Math.round((e.clientX - r.left - P.l) / (W - P.l - P.r) * (pts.length - 1));
+    if (i < 0 || i >= pts.length) return;
+    cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.setAttribute("opacity", .5);
+    tip.innerHTML = `<b>${label(i)}</b><br>Metric B ${money(pts[i].win)}`;
+    tip.style.left = e.clientX + 12 + "px"; tip.style.top = e.clientY - 50 + "px"; tip.style.opacity = 1;
+  };
+  svg.querySelector("#hit").onmouseleave = () => { tip.style.opacity = 0; cross.setAttribute("opacity", 0); };
+}
+
+function drawTable(s) {
+  const days = DAYS - s;
+  const list = machines
+    .filter(m => state.zone === "all" || m.zone === state.zone)
+    .filter(m => (m.id + m.game).toLowerCase().includes(state.q))
+    .map(m => ({ ...m, win: m.scale * 120 * days }));
+  list.sort((a, b) => {
+    const A = a[state.sort], B = b[state.sort];
+    return (A > B ? 1 : A < B ? -1 : 0) * (state.asc ? 1 : -1);
+  });
+  $("rows").innerHTML = list.slice(0, 10).map(m => `
+    <tr data-id="${m.id}" class="${state.sel === m.id ? "on" : ""}" tabindex="0">
+      <td><b>${m.id}</b><br><span class="sub">${m.game}</span></td>
+      <td>${m.zone}</td><td>${money(m.win)}</td><td>${m.sessions}</td>
+    </tr>`).join("") || `<tr><td colspan="4" class="sub">No machines match.</td></tr>`;
+  document.querySelectorAll("th[data-k]").forEach(th => {
+    th.textContent = th.textContent.replace(/ [↑↓]$/, "") + (th.dataset.k === state.sort ? (state.asc ? " ↑" : " ↓") : "");
+  });
+  const m = list.find(x => x.id === state.sel);
+  $("detail").className = "detail" + (m ? " show" : "");
+  if (m) $("detail").innerHTML = `<b>${m.id} · ${m.game}</b> — ${m.zone}. Metric B ${money(m.win)}, Metric C ${m.sessions}. <span class="sub">(Placeholder detail panel.)</span>`;
+}
+
+// ---- Events ----
+$("period").onchange = e => { state.months = +e.target.value; render(); };
+$("zone").onchange = e => { state.zone = e.target.value; render(); };
+$("search").oninput = e => { state.q = e.target.value.toLowerCase(); drawTable(startDay()); };
+document.querySelectorAll(".toggle button").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".toggle button").forEach(x => x.classList.toggle("on", x === b));
+  state.gran = +b.dataset.g; render();
+});
+$("zones").onclick = e => {
+  const b = e.target.closest(".zone"); if (!b) return;
+  state.zone = state.zone === b.dataset.z ? "all" : b.dataset.z;
+  $("zone").value = state.zone; render();
+};
+document.querySelectorAll("th[data-k]").forEach(th => th.onclick = () => {
+  state.asc = state.sort === th.dataset.k ? !state.asc : false;
+  state.sort = th.dataset.k; drawTable(startDay());
+});
+$("rows").onclick = e => {
+  const tr = e.target.closest("tr[data-id]"); if (!tr) return;
+  state.sel = state.sel === tr.dataset.id ? null : tr.dataset.id; drawTable(startDay());
+};
+$("rows").onkeydown = e => { if (e.key === "Enter") $("rows").onclick(e); };
+window.onresize = render;
+render();
+</script>
+</body>
+</html>

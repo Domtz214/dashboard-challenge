@@ -1,0 +1,351 @@
+{
+ "about": "Every data file with its row count and SHA-256, so a download can be verified and any later change is visible. Paths are relative to this folder.",
+ "dataset": "Dashboard Royale — The Gilded Ace",
+ "version": "0.9.0-draft",
+ "world_id": "gilded-ace-v1",
+ "build_seed": 20250102,
+ "window_local": "2025-01-01 06:00 to 2025-07-01 06:00 America/Los_Angeles",
+ "files": [
+  {
+   "path": "1_prepared_views/player_period.csv.gz",
+   "bytes": 5998914,
+   "sha256": "bf1f0a324018dda71eb86d13dd6b7ee71a6f6cedb488cb30fc55e607a2d4c92d"
+  },
+  {
+   "path": "1_prepared_views/player_period.parquet",
+   "bytes": 5030595,
+   "sha256": "e7ddbbafb2ddd9a24ec8bb7b5c5a9c79a17ff0d379011a4f35054be03a0fac2f",
+   "rows": 148893
+  },
+  {
+   "path": "1_prepared_views/prepared_daily_view.csv.gz",
+   "bytes": 4599841,
+   "sha256": "4e828ae7c8e023940be862c28b6c9dd548cead37dc9fb2678090578f98deccee"
+  },
+  {
+   "path": "1_prepared_views/prepared_daily_view.parquet",
+   "bytes": 3026620,
+   "sha256": "dcf59b0a3ad7dceeff1de7ae5a86e313c42300f3f3b73c652df86cd60fd0eebb",
+   "rows": 56110
+  },
+  {
+   "path": "1_prepared_views/property_day.csv.gz",
+   "bytes": 17990,
+   "sha256": "b7a8e7c37cff54ebd24530680e7d0bc9b47cd6acc7d1f59d612cf19db951d388"
+  },
+  {
+   "path": "1_prepared_views/property_day.parquet",
+   "bytes": 27373,
+   "sha256": "8e3df1d0662e27cd964d72287bac224e9f2395600ad8bece9ce4f8b17f5457d5",
+   "rows": 181
+  },
+  {
+   "path": "2_machine_decision/action_catalog.csv.gz",
+   "bytes": 997,
+   "sha256": "9e99ee5846f95e56434234c1eb247291f6994538ed6c133632083327c2c70ed8"
+  },
+  {
+   "path": "2_machine_decision/action_catalog.parquet",
+   "bytes": 3807,
+   "sha256": "d4583febb24d0528feb90f8fa81bb4c2910abba94def7d8c06b96897814d2842",
+   "rows": 13
+  },
+  {
+   "path": "2_machine_decision/calendar_day.csv.gz",
+   "bytes": 1626,
+   "sha256": "74f2ca7c39384eccf01c559d0f590499e76c15fe3e6f72d50e313dd52e3dbcaa"
+  },
+  {
+   "path": "2_machine_decision/calendar_day.parquet",
+   "bytes": 5717,
+   "sha256": "b6c26f1c60fba6594d52803228e14c734088bd8fb905520ee71041d191092e19",
+   "rows": 181
+  },
+  {
+   "path": "2_machine_decision/cost_rules.csv.gz",
+   "bytes": 484,
+   "sha256": "b0e535ce79a58fdb2e5bae515b567e6e5bd1a60451632869693b4e15c65bb924"
+  },
+  {
+   "path": "2_machine_decision/cost_rules.parquet",
+   "bytes": 2884,
+   "sha256": "feedcd1b0ffa965191a6e76b547ec88c981a9ed5955485820d50c5b904a0a498",
+   "rows": 9
+  },
+  {
+   "path": "2_machine_decision/floor_locations.csv.gz",
+   "bytes": 2676,
+   "sha256": "efa40352e1633de637e404d7f6d8cfc3a062db146e2d75f03ed0fdfd03769384"
+  },
+  {
+   "path": "2_machine_decision/floor_locations.parquet",
+   "bytes": 6773,
+   "sha256": "47958de9cb8cfbba7cfeab41eb015f8e840e1572f1a2f3d2ed6b6d494de43c39",
+   "rows": 378
+  },
+  {
+   "path": "2_machine_decision/floor_walkways.csv.gz",
+   "bytes": 229,
+   "sha256": "3d099721e22efe6fe26ba2983db5754a8a7a1c5f4d755a7279955a9b38821201"
+  },
+  {
+   "path": "2_machine_decision/floor_walkways.parquet",
+   "bytes": 1799,
+   "sha256": "9cdb3c0205d179dea91ef6c71948913c14dd214e95c76805aeb8624efa07854c",
+   "rows": 10
+  },
+  {
+   "path": "2_machine_decision/game_math.csv.gz",
+   "bytes": 557,
+   "sha256": "40c2fa208db926b406206fdfa67e8f7e8f67c9614727aae3b123e5d8bc705dc1"
+  },
+  {
+   "path": "2_machine_decision/game_math.parquet",
+   "bytes": 3389,
+   "sha256": "b6ebc7040d7120dd20be89c5f6ba264d650be9e4bfd03530a2e0abfb3f4f931d",
+   "rows": 10
+  },
+  {
+   "path": "2_machine_decision/machine_day.csv.gz",
+   "bytes": 2231488,
+   "sha256": "e05e8941a89379763a8e576887be47b9a43f2d79a568b132b75604fdfbf3be9f"
+  },
+  {
+   "path": "2_machine_decision/machine_day.parquet",
+   "bytes": 2063747,
+   "sha256": "8bd1ebdb1dd2f695eef8585da0d3d5b6785d7c050e29ae52b14c2123c7c33176",
+   "rows": 56110
+  },
+  {
+   "path": "2_machine_decision/machines.csv.gz",
+   "bytes": 2749,
+   "sha256": "8b1748c4868454bed651418136b5f4966ec9a33bb13389bf04951d77ed79cb94"
+  },
+  {
+   "path": "2_machine_decision/machines.parquet",
+   "bytes": 4564,
+   "sha256": "da7f869b62161b61bc44b0fc19d266ccaab2eab94505aa279956d70a1b8047e0",
+   "rows": 310
+  },
+  {
+   "path": "2_machine_decision/operations.csv.gz",
+   "bytes": 49715,
+   "sha256": "a24eee3fd7e3db60dd278a3fe3b5f68091255cbc8227867926d0720dc25a8106"
+  },
+  {
+   "path": "2_machine_decision/operations.parquet",
+   "bytes": 77788,
+   "sha256": "1d08ce76f31037c95ac3f40918917afa1f4b2fab9d8500a609c7ed4e05e9ca13",
+   "rows": 1226
+  },
+  {
+   "path": "2_machine_decision/placements.csv.gz",
+   "bytes": 5604,
+   "sha256": "db6b1f14217c8cc41436520f0a4f72e4a91e52bc9c424593bebcf21a162dfebc"
+  },
+  {
+   "path": "2_machine_decision/placements.parquet",
+   "bytes": 8326,
+   "sha256": "0759516a4c8885176ac2e027b6a214f771144d4d4e3d23210d008c3eb806f810",
+   "rows": 314
+  },
+  {
+   "path": "3_guests/fnb_transactions.csv.gz",
+   "bytes": 8650692,
+   "sha256": "5fb954c5ddc652ec4d258a6867d96a4307d66a273d525b640a20a44e64fab814"
+  },
+  {
+   "path": "3_guests/fnb_transactions.parquet",
+   "bytes": 7797653,
+   "sha256": "6021ec899dfded9241bb617e85f922045de42d12af77d6cd0a2e85cce5a1df4b",
+   "rows": 227833
+  },
+  {
+   "path": "3_guests/loyalty_ledger.csv.gz",
+   "bytes": 29349003,
+   "sha256": "2059508d4d3f746f2897921de4d5bbf1731a7eb6d6ce0947021f5f2a99b4767c"
+  },
+  {
+   "path": "3_guests/loyalty_ledger.parquet",
+   "bytes": 25105592,
+   "sha256": "f00e81ec27c36fc9d6adea0569a7b31d041f41572bef596dadfdd2ffcbe46f5e",
+   "rows": 782773
+  },
+  {
+   "path": "3_guests/players.csv.gz",
+   "bytes": 1988131,
+   "sha256": "07d1bc23c669c9da0d56f33fc1b2c653ec16a46e19fc663afdf6fa93d4607ea1"
+  },
+  {
+   "path": "3_guests/players.parquet",
+   "bytes": 1849183,
+   "sha256": "1bd2af3b338effc243dac5ce5b65a796a43d885be77f221445c1cfaa7e7c2c0b",
+   "rows": 113890
+  },
+  {
+   "path": "3_guests/sessions.csv.gz",
+   "bytes": 54382378,
+   "sha256": "742cc4fda8ef12a50f6361ff85e6cef8761adee418518ca5f77d473f5bee16f5"
+  },
+  {
+   "path": "3_guests/sessions.parquet",
+   "bytes": 41936289,
+   "sha256": "2557a50f213e4e8b16d0b733281bf2d7c77ecad6300a0fcc6febdbb17ed45e98",
+   "rows": 776297
+  },
+  {
+   "path": "3_guests/trips.csv.gz",
+   "bytes": 11537290,
+   "sha256": "44bd1de4dcce96f7f364e638d1d22c8cf7e3a5951c4553a54d33bbcb4291b655"
+  },
+  {
+   "path": "3_guests/trips.parquet",
+   "bytes": 9438090,
+   "sha256": "4ce086b3d08919b818f5e5474acfaab50a51c77f97f04cb1b202d674128fc031",
+   "rows": 351729
+  },
+  {
+   "path": "4_context/events.csv.gz",
+   "bytes": 596,
+   "sha256": "0179dfafedac4684998c32263d44f5d9229e30f36648b1b85bcbb209b7021dd7"
+  },
+  {
+   "path": "4_context/events.parquet",
+   "bytes": 3017,
+   "sha256": "f55b840d409bd56991ce1afe401239a67ec646d3a540217701dc7b4ad88607f8",
+   "rows": 8
+  },
+  {
+   "path": "4_context/real_sources/benchmark_property_monthly.csv.gz",
+   "bytes": 4103,
+   "sha256": "fcdef064f516146596192d941f504ae1c88a55e22e504a31036c3eff69fec3a9"
+  },
+  {
+   "path": "4_context/real_sources/benchmark_property_monthly.parquet",
+   "bytes": 7292,
+   "sha256": "18e9c097787b64be412663743512bb8e909162697089727c4f3ea8ce5bbfc84f",
+   "rows": 78
+  },
+  {
+   "path": "4_context/real_sources/benchmark_public.csv.gz",
+   "bytes": 26864,
+   "sha256": "6c98193c478118858c7a3d029d1eeab0321dbf3ab46a463c7d6b26356f87cd75"
+  },
+  {
+   "path": "4_context/real_sources/benchmark_public.parquet",
+   "bytes": 23880,
+   "sha256": "43448e4f39caab30c2708a51510fc1de24ed0f9f93a40565db5c6af59f8823ac",
+   "rows": 700
+  },
+  {
+   "path": "4_context/real_sources/benchmark_state_monthly.csv.gz",
+   "bytes": 687,
+   "sha256": "cd9defc10cf7c55df74567997d8ad5365ed27baa045ee607345fd7230adf51df"
+  },
+  {
+   "path": "4_context/real_sources/benchmark_state_monthly.parquet",
+   "bytes": 3492,
+   "sha256": "795e583037761ff76243dbed9abcee32e375dbe7eecae2f9f65f06e36fed58b0",
+   "rows": 6
+  },
+  {
+   "path": "4_context/real_sources/city_visitation_monthly.csv.gz",
+   "bytes": 719,
+   "sha256": "d9db79ac53039ca720f273a066b5b8b94eec2e1866eaca3d8b1650c51c601c89"
+  },
+  {
+   "path": "4_context/real_sources/city_visitation_monthly.parquet",
+   "bytes": 5496,
+   "sha256": "e352d813e635e836dc5421890c9b140c061c674de0cae07755e6eeb6aebaeb63",
+   "rows": 6
+  },
+  {
+   "path": "4_context/real_sources/visitor_profile_segments.csv.gz",
+   "bytes": 52629,
+   "sha256": "e8830ecad40d49c146f8b771f3fbcca3b9f6a828f98a4b6f28665a52a34e9b47"
+  },
+  {
+   "path": "4_context/real_sources/visitor_profile_segments.parquet",
+   "bytes": 30321,
+   "sha256": "f9abe628b2f1ad516db992f70592dad31d9b2060e831005bfa0b92bbb7f57fe4",
+   "rows": 1406
+  },
+  {
+   "path": "4_context/real_sources/visitor_profile_summary.csv.gz",
+   "bytes": 2871,
+   "sha256": "ebaa72d55198e952af1e3b2163a708e3361d707e2ae688dd2a67a764d8e0719b"
+  },
+  {
+   "path": "4_context/real_sources/visitor_profile_summary.parquet",
+   "bytes": 8534,
+   "sha256": "d17a6d9ad40dc057590be58261d03e6e16def8b984a94a377006398bd779a068",
+   "rows": 74
+  },
+  {
+   "path": "4_context/real_sources/weather_daily.csv.gz",
+   "bytes": 2332,
+   "sha256": "3fff76fdaa6fdb3674e6bbb51c2b2f41617b12dd5a32272f44ace9af5f952c91"
+  },
+  {
+   "path": "4_context/real_sources/weather_daily.parquet",
+   "bytes": 8023,
+   "sha256": "97883e79568416b875168662ad577796f16f0288b797a61aa6a05eba856108a9",
+   "rows": 181
+  },
+  {
+   "path": "4_context/zone_traffic_hourly.csv.gz",
+   "bytes": 369844,
+   "sha256": "15d1a9446dbaf2a9ad601456b1413838acda48c771c71505f3612f478a045d1e"
+  },
+  {
+   "path": "4_context/zone_traffic_hourly.parquet",
+   "bytes": 316882,
+   "sha256": "5f33099b4e65115461828c0de1bde4f88244d57b9069b263601abdbc20e22e3c",
+   "rows": 30401
+  },
+  {
+   "path": "5_optional/machine_hour.csv.gz",
+   "bytes": 24234428,
+   "sha256": "7c557df6c369d2c931da4a1d83aad0d9f54c6175052884c50f5bc68217903f9f"
+  },
+  {
+   "path": "5_optional/machine_hour.parquet",
+   "bytes": 15569924,
+   "sha256": "5916c0fa6b758350e8d60b188f8e4a8987868d053628a9c44bce574a6414aaf9",
+   "rows": 1321908
+  },
+  {
+   "path": "5_optional/security_incidents.csv.gz",
+   "bytes": 112197,
+   "sha256": "c93c483944dfe61ba201f43c330416625dcdc85b7e108690bea059f908123315"
+  },
+  {
+   "path": "5_optional/security_incidents.parquet",
+   "bytes": 165414,
+   "sha256": "8d46b99cc61cde78940032c3947d6f9b3c9e8f21ad2b76870c018b6566a7926e",
+   "rows": 3865
+  },
+  {
+   "path": "5_optional/shift_roster.csv.gz",
+   "bytes": 158380,
+   "sha256": "01a8bba053045f838fae54afc2cadfd8b2debba0e0bfdbce0ca28c8b3e358a0d"
+  },
+  {
+   "path": "5_optional/shift_roster.parquet",
+   "bytes": 117768,
+   "sha256": "c688b49849c6cd1501b54cf700a9cdb811554a2fea1d402c3b3890a8602f0f4e",
+   "rows": 10317
+  },
+  {
+   "path": "5_optional/visitor_profile_monthly.csv.gz",
+   "bytes": 692,
+   "sha256": "251097a454be407d5f675f13b69da8fbf72496171374656a2ac2c4c2206dba22"
+  },
+  {
+   "path": "5_optional/visitor_profile_monthly.parquet",
+   "bytes": 3068,
+   "sha256": "dd598f117cfca418201efccb81cf18114a532db69a362a9514a814522b6fd65d",
+   "rows": 42
+  }
+ ]
+}

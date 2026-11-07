@@ -1,0 +1,12 @@
+{
+  "calibration": {
+    "approved_by": null,
+    "report_path": null,
+    "manifest_sha256": null
+  },
+  "source_permissions": {
+    "LVCVA": {"evidence_path": null},
+    "Missouri Gaming Commission": {"evidence_path": null},
+    "NOAA": {"evidence_path": "reference/SOURCE_TERMS.md"}
+  }
+}
